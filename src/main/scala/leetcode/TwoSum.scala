@@ -1,5 +1,7 @@
 package leetcode
 
+import utils.NoSolutionException
+
 /**
   * Given an array of integers, return indices of the two numbers such that they add up to a specific target.
   * You may assume that each input would have exactly one solution, and you may not use the same element twice.
@@ -10,6 +12,8 @@ package leetcode
   * return [0, 1].
   */
 
+//The solution is BAD. Time complexity : n^2.
+// This can be done in nlog(n) by sorting the array, taking the elements one by one and performing a binary search on the remainder.
 object TwoSum {
 
   /**
@@ -46,10 +50,5 @@ object TwoSum {
           return i
     }
     return -1
-  }
-
-  class NoSolutionException() extends Exception{
-
-    override def toString: String = "No solution to given problem!"
   }
 }

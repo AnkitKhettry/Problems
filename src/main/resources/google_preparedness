@@ -1,0 +1,50 @@
+Datastructures (All operations)
+    Arrays
+    Linked Lists
+    Stacks
+    Queues
+    Binary Tree
+    Binary Search Tree
+    Balanced Trees
+    Heap (priority queue)
+    Disjoint Set
+    Trie?
+
+Algorithms
+    Searching
+    Sorting
+    Strings
+    Divide and Conquer
+    Backtracking
+    Graph Algorithms
+    Greedy
+    Recursion
+    Dynamic Programming
+    Bit Manipulation
+    Constructive algorithms (combination of two or more)
+    NP complete?
+    Practice - Geeksforgeeks and leetcode
+    Debugging?
+
+Data Engineering - Designing Data-Intensive Applications, Spark batch and streaming, Kafka, Watermarking
+
+Operating system - Processes, threads, concurrency basics
+    semaphores
+    locks
+    mutexes
+    context switching, scheduling
+
+Networking and Internet -
+    Routers
+    DNS
+    Load Balancers
+    Proxies
+    Firewalls
+    How search works
+
+Math problems -
+    Probabily
+    Combinatorics
+    Counting problems
+
+System Design - Sample Topics
