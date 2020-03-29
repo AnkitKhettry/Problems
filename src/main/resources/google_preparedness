@@ -1,13 +1,14 @@
-Datastructures (All operations)
-    Arrays
-    Linked Lists
-    Stacks
-    Queues
+Data Structures (All operations)
+    Array
+    Linked List
+    Stack
+    Queue
     Binary Tree
     Binary Search Tree
     Balanced Trees
     Heap (priority queue)
-    Disjoint Set
+    Graph, Disjoint Set
+    Hashmap
     Trie?
 
 Algorithms
@@ -48,3 +49,5 @@ Math problems -
     Counting problems
 
 System Design - Sample Topics
+
+Design Patterns

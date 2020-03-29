@@ -35,6 +35,11 @@ class LinkedList(var head: Option[Node]) {
     println
   }
 
+  /**
+    * Searches for a value in the LL
+    * @param value value to be searched
+    * @return Index of the node with the value. -1 if the value was not found
+    */
   def searchValue(value: Int) : Int = {
 
     var current = head
