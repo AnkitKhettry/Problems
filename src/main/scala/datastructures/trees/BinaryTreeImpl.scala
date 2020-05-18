@@ -37,6 +37,7 @@ class BinarySearchTree() {
   def removeValue= ???
   def balance = ???
 
+  //Level order traversal == Bredth first
   private def _levelOrderTraversal(node: Option[Node]) : Unit = {
 
     if (!node.isDefined){
