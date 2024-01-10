@@ -4,7 +4,7 @@ import utils.EmptyHeapException
 
 import scala.collection.mutable
 
-//https://www.youtube.com/watch?v=WCm3TqScBM8
+// https://www.youtube.com/watch?v=WCm3TqScBM8
 
 abstract class Heap(heap : mutable.ArrayBuffer[Int]) {
 
