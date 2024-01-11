@@ -10,21 +10,6 @@ Explanation: The subarray [4,-1,2,1] has the largest sum 6.
 """
 
 
-def max_subarray(nums):
-
-    # Smallest python integer:
-    max_sum = float('-inf')
-    max_sum_till_n = max_sum
-
-    for n in nums:
-        max_sum_till_n = max(n, max_sum_till_n + n)
-        max_sum = max(max_sum, max_sum_till_n)
-
-    print(max_sum)
-
-    return max_sum
-
-
 def max_subarray_quadratic(nums):
 
     max_sum = nums[0]
@@ -46,8 +31,24 @@ def max_subarray_quadratic(nums):
     return max_sum
 
 
+
+
+
+def max_subarray(nums):
+    max_sum = nums[0]
+    running_sum_including_n = nums[0]
+    for n in nums[1:]:
+        if running_sum_including_n<0:
+            running_sum_including_n = n
+        else:
+            running_sum_including_n = n + running_sum_including_n
+        max_sum = max(max_sum, running_sum_including_n)
+
+    return max_sum
+
+
 if __name__ == "__main__":
-    arr1 = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-    max_subarray(arr1)
+    arr1 = [-2, 1, -3, 4, -1, 2, 1, -5, 4, 8]
+    assert max_subarray(arr1) == 13
     arr2 = [-2, -3, -1, -5]
-    max_subarray(arr2)
+    assert max_subarray(arr2) == -1

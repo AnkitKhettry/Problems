@@ -15,11 +15,7 @@ merged: a p b q c r
 
 
 def merge_alternately(word1, word2):
-    """
-    :type word1: str
-    :type word2: str
-    :rtype: str
-    """
+
     i = j = 0
     size_w1 = len(word1)
     size_w2 = len(word2)
