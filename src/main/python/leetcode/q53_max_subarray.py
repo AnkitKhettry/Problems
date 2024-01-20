@@ -38,7 +38,7 @@ def max_subarray(nums):
     max_sum = nums[0]
     running_sum_including_n = nums[0]
     for n in nums[1:]:
-        if running_sum_including_n<0:
+        if running_sum_including_n < 0:
             running_sum_including_n = n
         else:
             running_sum_including_n = n + running_sum_including_n
