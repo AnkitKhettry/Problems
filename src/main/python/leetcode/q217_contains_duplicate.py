@@ -17,11 +17,10 @@ https://leetcode.com/problems/contains-duplicate/
 
 def contains_duplicate(nums):
     set_of_nums = set()
-    for i in range(len(nums)):
-        if nums[i] not in set_of_nums:
-            set_of_nums.add(nums[i])
-        else:
+    for i in nums:
+        if i in set_of_nums:
             return True
+        set_of_nums.add(i)
     return False
 
 

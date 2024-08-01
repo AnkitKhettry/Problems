@@ -17,15 +17,18 @@ def two_sum_brute_force(nums, target):
             if nums[i] + nums[j] == target:
                 return i, j
 
-    return -1, -1
+    return [-1, -1]
 
 
 def two_sum(nums, target):
-    num_dict = {}
+
+    #nums_map = {key: idx for idx, key in enumerate(nums)}
+    nums_map = {}
     for i in range(len(nums)):
-        if target - nums[i] in num_dict:
-            return i, num_dict[target - nums[i]]
-        num_dict[nums[i]] = i
+        if (target - nums[i]) in nums_map:
+            return [i, nums_map[target - nums[i]]]
+        nums_map[nums[i]] = i
+    return [-1, -1]
 
 
 if __name__ == "__main__":
