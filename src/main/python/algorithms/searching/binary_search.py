@@ -3,29 +3,29 @@ Given a sorted array, search the position of an element
 """
 
 
-def binary_search(arr, start_idx, end_idx, num_to_search):
+def binary_search(arr, num_to_search, start):
 
-    if end_idx < start_idx:
+    if num_to_search > arr[len(arr)-1] or num_to_search < arr[0]:
         return -1
+    mid = int(len(arr)/2)
 
-    mid = start_idx + int((end_idx - start_idx)/2)
     if num_to_search == arr[mid]:
-        return mid
-
-    if num_to_search > arr[mid]:
-        return binary_search(arr, mid+1, end_idx, num_to_search)
-
+        return start + mid
     if num_to_search < arr[mid]:
-        return binary_search(arr, start_idx, mid-1, num_to_search)
+        return binary_search(arr[:mid], num_to_search, start)
+    else:
+        return binary_search(arr[mid:], num_to_search, start+mid)
 
 
 if __name__ == "__main__":
 
-    print(binary_search([1, 2, 3, 4, 5], 0, 4, 4))
-    print(binary_search([1, 2, 3, 4, 5], 0, 4, 6))
-    print(binary_search([1, 2, 3, 4, 5], 0, 4, 1))
-    print(binary_search([1, 2, 3, 4, 5], 0, 4, 5))
-    print(binary_search([1, 2, 3, 4], 0, 3, 2))
-    print(binary_search([1, 2, 3, 4], 0, 3, 6))
-    print(binary_search([1, 2, 3, 4], 0, 3, 1))
-    print(binary_search([1, 2, 3, 4], 0, 3, 4))
+    print(binary_search([1, 2, 3, 4, 5], 6, 0))
+    print(binary_search([1, 2, 3, 4, 5], 0, 0))
+    print(binary_search([1, 2, 3, 4, 5], 1, 0))
+    print(binary_search([1, 2, 3, 4, 5], 3, 0))
+    print(binary_search([1, 2, 3, 4, 5], 4, 0))
+    print(binary_search([1, 2, 3, 4, 5], 5, 0))
+    print(binary_search([1, 2, 3, 4], 1, 0))
+    print(binary_search([1, 2, 3, 4], 2, 0))
+    print(binary_search([1, 2, 3, 4], 3, 0))
+    print(binary_search([1, 2, 3, 4], 4, 0))

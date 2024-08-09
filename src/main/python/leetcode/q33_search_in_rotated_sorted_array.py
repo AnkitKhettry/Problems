@@ -20,42 +20,45 @@ https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 """
 
 
-def search(nums, target):
-    left = 0
-    right = len(nums)-1
-    mid = left + ((right-left)//2)
-
-    while True:
-        if nums[left] == target:
-            return left
-        if nums[right] == target:
-            return right
-        if nums[mid] == target:
-            return mid
-        if (right-left) <= 1:
-            return -1
-
-        mid = left + ((right-left)//2)
-        if nums[left] < nums[mid]:
-            # Left portion is sorted
-            if nums[left] < target < nums[mid]:
-                # Target is in the left sorted portion
-                right = mid
-            else:
-                # Target is not in the left sorted portion
-                left = mid
+def search_recursive(nums, target, start_idx):
+    if len(nums) == 1 and nums[0] != target:
+        return -1
+    last = len(nums) - 1
+    mid = int(last / 2)
+    if nums[mid] == target:
+        return start_idx + mid
+    if nums[mid + 1] <= nums[last]:
+        # Right half is sorted
+        if nums[mid + 1] <= target <= nums[last]:
+            # Target belongs in the right half
+            return search_recursive(nums[mid + 1:], target, start_idx + mid + 1)
         else:
-            # Right portion is sorted
-            if nums[mid] < target < nums[right]:
-                # Target is in the right sorted portion
-                left = mid
-            else:
-                # Target is not in the right sorted portion
-                right = mid
+            # Target doesn't belong in the right half
+            return search_recursive(nums[:mid + 1], target, start_idx)
+    else:
+        # Left half is sorted
+        if nums[0] <= target <= nums[mid]:
+            # Target belongs in the left half
+            return search_recursive(nums[:mid + 1], target, start_idx)
+        else:
+            # Target doesn't belong in the left half
+            return search_recursive(nums[mid + 1:], target, start_idx + mid + 1)
+
+
+def search(nums, target):
+    """
+    :type nums: List[int]
+    :type target: int
+    :rtype: int
+    """
+    return search_recursive(nums, target, 0)
 
 
 if __name__ == "__main__":
     assert search([4, 5, 6, 7, 0, 1, 2], 0) == 4
     assert search([4, 5, 6, 7, 0, 1, 2], 3) == -1
+    assert search([1, 3], 0) == -1
     assert search([1], 0) == -1
     assert search([1], 1) == 0
+    assert (search([1, 3], 0)) == -1
+    print("Tests complete")
