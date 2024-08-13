@@ -25,6 +25,7 @@ class Stack:
     def print(self):
         print(self.arr)
 
+
 if __name__ == "__main__":
     stack = Stack(max_size=5)
     stack.push(1)

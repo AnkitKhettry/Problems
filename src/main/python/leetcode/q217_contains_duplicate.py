@@ -16,6 +16,7 @@ https://leetcode.com/problems/contains-duplicate/
 
 
 def contains_duplicate(nums):
+
     set_of_nums = set()
     for i in nums:
         if i in set_of_nums:

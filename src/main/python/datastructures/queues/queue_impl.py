@@ -1,29 +1,30 @@
 from builtins import Exception
+from collections import deque
 
 
 class Queue:
 
     def __init__(self, max_size):
-        self.arr = []
+        self.queue = deque()
         self.max_size = max_size
 
     def enqueue(self, val):
-        if len(self.arr) < self.max_size:
-            self.arr.append(val)
+        if len(self.queue) < self.max_size:
+            self.queue.append(val)
         else:
             raise Exception(f"Overflow Error. Breaching max size {self.max_size}")
 
     def dequeue(self):
-        curr_size = len(self.arr)
+        curr_size = len(self.queue)
         if curr_size == 0:
             raise Exception("Queue empty!!")
-        return self.arr.pop(0)
+        return self.queue.popleft()
 
     def get_size(self):
-        return len(self.arr)
+        return len(self.queue)
 
     def print(self):
-        print(self.arr)
+        print(self.queue)
 
 
 if __name__ == "__main__":

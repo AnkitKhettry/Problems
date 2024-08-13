@@ -10,13 +10,17 @@ Output: true
 
 
 def can_jump(nums):
-    current_max_jump = 1
-    for i in range(len(nums)):
-        if i == len(nums) - 1:
-            return True
-        current_max_jump = max(current_max_jump - 1, nums[i])
-        if current_max_jump == 0:
-            return False
+    # Initially, goal is at the last position
+    goal = len(nums) - 1
+    for i in range(len(nums) - 1, -1, -1):
+        if i + nums[i] >= goal:
+            # If from position i, we can reach the goal, the target will now be just to
+            #   reach i. So we can now update goal to i.
+            goal = i
+
+    if goal == 0:
+        return True
+    return False
 
 
 if __name__ == "__main__":
