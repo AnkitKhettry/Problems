@@ -30,10 +30,10 @@ def merge_alternately(word1, word2):
             j = j+1
 
     if i < size_w1:
-        next_word += word1[i:size_w1]
+        next_word += word1[i:]
 
     if j < size_w2:
-        next_word += word2[j:size_w2]
+        next_word += word2[j:]
 
     return next_word
 

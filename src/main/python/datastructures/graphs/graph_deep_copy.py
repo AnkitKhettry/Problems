@@ -21,7 +21,7 @@ class GraphFunctions(object):
         visited_nodes[val] = cloned_node
 
         for neighbor in neighbors:
-            cloned_neighbor = visited_nodes.get(neighbor.val)
+            cloned_neighbor = visited_nodes._get(neighbor.val)
             if cloned_neighbor == None:
                 cloned_neighbor = self.visit_node(neighbor)
             cloned_node.neighbors.append(cloned_neighbor)
