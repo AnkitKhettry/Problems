@@ -36,13 +36,14 @@ def max_subarray_quadratic(nums):
 
 def max_subarray(nums):
     max_sum = nums[0]
-    running_sum_including_n = nums[0]
-    for n in nums[1:]:
-        if running_sum_including_n < 0:
-            running_sum_including_n = n
+    prev_max_sum = nums[0]
+
+    for num in nums[1:]:
+        if num + prev_max_sum > num:
+            prev_max_sum = num + prev_max_sum
         else:
-            running_sum_including_n = n + running_sum_including_n
-        max_sum = max(max_sum, running_sum_including_n)
+            prev_max_sum = num
+        max_sum = max(prev_max_sum, max_sum)
 
     return max_sum
 

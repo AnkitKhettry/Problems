@@ -33,4 +33,3 @@ if __name__ == "__main__":
     assert max_profit([2, 3, 1, 3, 6, 4]) == 5
     assert max_profit([6, 5, 4, 3, 2, 1]) == 0
     assert max_profit([7, 3 ,5, 1, 4, 6, 2]) == 5
-
