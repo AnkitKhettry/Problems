@@ -17,25 +17,20 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 
 
 def max_profit(prices):
-    # Initialize local max profit to zero
-    local_max_profit = 0
-    num_days = len(prices)
+    # Dry run with [7,3,5,1,4,6,2]
+    max_profit = 0
+    curr_buy = prices[0]
 
-    # Initialize local window
-    l, r = 0, 1
-    while r < num_days:
-        if prices[r] > prices[l]:
-            # Update local minimum
-            local_max_profit = max(local_max_profit, prices[r] - prices[l])
+    for price in prices[1:]:
+        if price < curr_buy:
+            curr_buy = price
         else:
-            # Update local max profit
-            l = r
-        r = r + 1
-    return local_max_profit
+            max_profit = max(price - curr_buy, max_profit)
+    return max_profit
 
 
 if __name__ == "__main__":
-    print(max_profit([2, 3, 1, 3, 6, 4]))
-    print(max_profit([6, 5, 4, 3, 2, 1]))
     assert max_profit([2, 3, 1, 3, 6, 4]) == 5
     assert max_profit([6, 5, 4, 3, 2, 1]) == 0
+    assert max_profit([7, 3 ,5, 1, 4, 6, 2]) == 5
+
