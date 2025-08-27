@@ -19,46 +19,57 @@ Output: -1
 https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 """
 
-
-def search_recursive(nums, target, start_idx):
-    if len(nums) == 1 and nums[0] != target:
-        return -1
-    last = len(nums) - 1
-    mid = int(last / 2)
-    if nums[mid] == target:
-        return start_idx + mid
-    if nums[mid + 1] <= nums[last]:
-        # Right half is sorted
-        if nums[mid + 1] <= target <= nums[last]:
-            # Target belongs in the right half
-            return search_recursive(nums[mid + 1:], target, start_idx + mid + 1)
-        else:
-            # Target doesn't belong in the right half
-            return search_recursive(nums[:mid + 1], target, start_idx)
-    else:
-        # Left half is sorted
-        if nums[0] <= target <= nums[mid]:
-            # Target belongs in the left half
-            return search_recursive(nums[:mid + 1], target, start_idx)
-        else:
-            # Target doesn't belong in the left half
-            return search_recursive(nums[mid + 1:], target, start_idx + mid + 1)
-
-
 def search(nums, target):
     """
     :type nums: List[int]
     :type target: int
     :rtype: int
     """
-    return search_recursive(nums, target, 0)
+
+    start = 0
+    end = len(nums) - 1
+    while True:
+        if start == end and nums[start] != target:
+            return -1
+        if nums[start] == target:
+            return start
+        if nums[end] == target:
+            return end
+        mid = int((start + end) / 2)
+        if nums[mid] == target:
+            return mid
+        if nums[mid+1] == target:
+            return mid+1
+        if nums[start] <= target <= nums[mid]:
+            end = mid
+        elif nums[mid+1] <= target <= nums[end]:
+            start = mid + 1
+        elif nums[start] > nums[mid]:
+            end = mid
+        else:
+            start = mid + 1
 
 
 if __name__ == "__main__":
+    assert search([4, 5, 6, 7, 8, 1, 2, 3], 2) == 6
     assert search([4, 5, 6, 7, 0, 1, 2], 0) == 4
-    assert search([4, 5, 6, 7, 0, 1, 2], 3) == -1
-    assert search([1, 3], 0) == -1
-    assert search([1], 0) == -1
-    assert search([1], 1) == 0
-    assert (search([1, 3], 0)) == -1
+    assert search([4, 5, 6, 7, 0, 1, 2], 1) == 5
+    assert search([1, 2, 3, 4, 5, 6], 5) == 4
+    assert search([1, 2, 3, 4, 5, 6], 1) == 0
+    assert search([1, 2, 3, 4, 5, 6], 6) == 5
+    assert search([1, 2, 3, 4, 5, 6], 6) == 5
+    assert search([6, 1, 2, 3, 4, 5], 6) == 0
+    assert search([6, 1, 2, 3, 4, 5], 1) == 1
+    assert search([3, 4, 5, 6, 1, 2], 1) == 4
+    assert search([2, 3, 4, 5, 6, 1], 6) == 4
+    assert search([0, 1], 0) == 0
+    assert search([0, 1], 1) == 1
+    assert search([0, 1], 2) == -1
+    assert search([1, 0], 0) == 1
+    assert search([1, 0], 1) == 0
+    assert search([1, 0], 2) == -1
+    assert search([0], 0) == 0
+    assert search([0], 1) == -1
+    assert(search([5, 1, 2, 3, 4], 1)) == 1
+
     print("Tests complete")

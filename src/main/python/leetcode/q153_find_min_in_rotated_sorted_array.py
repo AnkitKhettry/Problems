@@ -24,24 +24,26 @@ https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 
 
 def find_min(nums):
-    first = 0
-    last = len(nums) - 1
-    if len(nums) == 1:
-        return nums[0]
-    if nums[first] < nums[last]:
-        # Array is already sorted. Return nums[first]
-        return nums[first]
-
+    start = 0
+    end = len(nums)-1
     while True:
-        if (last-first) == 1:
-            return nums[last]
-        mid = first + ((last - first) // 2)
-        if nums[first] < nums[mid]:
-            first = mid
+        mid = start + int((end-start)/2)
+        if nums[end] >= nums[start]:
+            return nums[start]
+        if nums[start] <= nums[mid]:
+            start = mid + 1
+        #elif nums[mid] < nums[end]:
         else:
-            last = mid
+            end = mid
 
 
 if __name__ == "__main__":
-    assert find_min([3, 4, 5, 1, 2]) == 1
+    assert find_min([3, 4, 5, 0, 1, 2]) == 0
     assert find_min([6, 7, 0, 1, 2, 4, 5]) == 0
+    assert find_min([7, 0, 1, 2, 4, 5, 6]) == 0
+    assert find_min([1, 2, 3, 4, 5, 6]) == 1
+    assert find_min([2, 3, 4, 5, 6, 1]) == 1
+    assert find_min([2, 3, 1]) == 1
+    assert find_min([2, 1]) == 1
+    assert find_min([1]) == 1
+

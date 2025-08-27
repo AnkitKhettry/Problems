@@ -19,23 +19,27 @@ https://leetcode.com/problems/maximum-product-subarray/
 
 def maximum_subarray(nums):
     max_product = nums[0]
-    max_product = max(nums)
-    running_max_product = 1
-    running_min_product = 1
-
-    for n in nums:
-        if n == 0:
-            running_max_product, running_min_product = 1, 1
+    current_prefix_max = 1
+    current_prefix_min = 1
+    # [-1,-2,-9,-6]
+    size = len(nums)
+    for j in range(0, size):
+        if nums[j] == 0:
+            current_prefix_max = 1
+            current_prefix_min = 1
+            max_product = max(0, max_product)
         else:
-            tmp_max_product = running_max_product * n
-            tmp_min_product = running_min_product * n
-            running_max_product = max(n, tmp_max_product, tmp_min_product)
-            running_min_product = min(n, tmp_max_product, tmp_min_product)
-            max_product = max(max_product, running_max_product)
+            tmp_max = current_prefix_max * nums[j]
+            tmp_min = current_prefix_min * nums[j]
+            current_prefix_max = max(tmp_max, tmp_min, nums[j])
+            current_prefix_min = min(tmp_max, tmp_min, nums[j])
+            max_product = max(current_prefix_max, max_product)
 
     return max_product
 
 
 if __name__ == "__main__":
-    assert maximum_subarray([2,3,-2,4]) == 6
-    assert maximum_subarray([-2,0,-1]) == 0
+    assert maximum_subarray([2, 3, -2, 4]) == 6
+    assert maximum_subarray([-2, 0, -1]) == 0
+    assert maximum_subarray([-1, -2, -9, -6]) == 108
+    
